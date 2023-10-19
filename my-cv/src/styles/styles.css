@@ -1,0 +1,115 @@
+#root {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 70%;
+    height: 70%;
+    display: grid;
+    grid-template-columns: (auto-fit, minmax(250px, calc(1fr - 20vw)));
+    justify-content: center;
+    gap: 50px;
+}
+
+.form {
+    width: 100%;
+    background: whitesmoke;
+    border: 2px solid rgb(175, 175, 160);
+    padding: 20px;
+    border-radius: 10px;
+    list-style: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.x-preview {
+    width: 100%;
+    background: whitesmoke;
+    padding: 20px;
+    border: 2px solid rgb(175, 175, 160);
+    border-radius: 10px;
+    list-style: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    height: 90vh;
+    min-height: 80vh;
+
+}
+
+h2 {
+    color: darkblue;
+}
+
+h3 {
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: darkblue;
+    margin-bottom: 10px;
+}
+
+h4 {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: darkblue;
+    
+}
+
+h5 {
+    
+    color: darkblue;
+}
+
+#test {
+    text-align: justify;
+}
+
+.test {
+    text-align: justify;
+}
+
+input {
+    min-height: 40px;
+    border-radius: 6px;
+    border: none;
+    padding: 0 10px;
+    margin-bottom: 6px;
+    min-width: 80%;
+    
+}
+
+input:active {
+    border: 1px solid rgb(175, 175, 160);
+}
+
+.desc {
+    height: 100px;
+    width: 80%;
+    text-align: left;
+    border-radius: 6px;
+    border: none;
+    padding: 10px;
+    
+}
+
+@media screen and (min-width: 1024px){
+    .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(0px, 1fr));
+    }
+}
+
+@media screen and (min-width: 300px) and (max-width: 780px){
+    .container {
+        width: 95vw;
+    }
+}
+    

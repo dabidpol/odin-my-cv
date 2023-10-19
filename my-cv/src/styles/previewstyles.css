@@ -1,0 +1,43 @@
+#prev-personal-info {
+    word-break: break-all;
+}
+
+#prev-personal-info hr{
+    width: 100%;
+    height: 4px;
+    margin-bottom: 20px;
+}
+
+#prev-personal-info #info2 {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2.7fr 1.3fr;
+    min-height: 100px;
+}
+
+#fullname {
+    font-size: 2em;
+    font-weight: bold;
+    color: darkblue;
+}
+
+#desc {
+    color: darkblue;
+    font-size: 1em;
+    text-align: justify;
+}
+
+.icon {
+    width: 20px;
+}
+
+.ppe {
+    color: darkblue;
+}
