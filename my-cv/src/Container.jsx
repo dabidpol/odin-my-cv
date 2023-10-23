@@ -3,9 +3,11 @@ import PersonalInformation from './components/PersonalInformation';
 import PersonalExp from './components/PersonalExp';
 import PersonalEduc from './components/PersonalEduc';
 import Preview from './components/Preview';
-//import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
+import ReactToPrint from 'react-to-print';
 
 export default function Container() {
+    let componentRef = null;
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -62,7 +64,8 @@ export default function Container() {
     function addExp(e) {
         e.preventDefault();
         console.log(e.target[0].value);
-        const objid = Math.floor(Math.random() * 10000) + 1;
+        //const objid = Math.floor(Math.random() * 10000) + 1;
+        const objid = uuidv4();
         const position = e.target[0].value;
         const company = e.target[1].value;
         const startdate = e.target[2].value;
@@ -147,6 +150,7 @@ export default function Container() {
 
 
     function resetFields(){
+        const nothing = [];
         setFirstName('');
         setLastName('');
         setEmail('');
@@ -157,6 +161,74 @@ export default function Container() {
         setZipcode('');
         setCountry('');
         setDescription('');
+        setExp(nothing);
+        setEduc(nothing);
+    }
+
+    function sampleData(){
+        resetFields();
+        setFirstName('Dabid');
+        setLastName('CABATINGAN');
+        setEmail('dcabatingan@gmail.com');
+        setPhone('09123456789');
+        setBrgy('Casisang');
+        setCity('Malaybalay City');
+        setProvince('Bukidnon');
+        setZipcode('8700');
+        setCountry('Philippines');
+        setDescription('Ah so you think darkness is your ally. You merely adopted the dark. I was born in it, molded by it...');
+        
+        const firstExp = {
+            objid: Math.floor(Math.random() * 10000) + 1,
+            position: 'Assistant Atik-atik',
+            company: 'Atik-atik Inc.',
+            startdate: '2019-01-01',
+            enddate: '2020-01-01',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc, vitae aliquam nisl nisl vitae',
+            
+    };
+
+        const secondExp = {
+            objid: Math.floor(Math.random() * 10000) + 1,
+            position: 'Senior Assistant Atik-atik',
+            company: 'Atik-atik Inc.',
+            startdate: '2020-01-01',
+            enddate: '2021-01-01',
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc, vitae aliquam nisl nisl vitae',
+        };
+
+        const firstEduc = {
+            objid: Math.floor(Math.random() * 10000) + 1,
+            school: 'Atik Atik University',
+            degree: 'Bachelor of Science in Atik Atik',
+            startdate: '2015-01-01',
+            enddate: '2019-01-01',
+        };
+
+        const secondEduc = {
+            objid: Math.floor(Math.random() * 10000) + 1,
+            school: 'Atik Atik University',
+            degree: 'Master of Science in Atik Atik',
+            startdate: '2019-01-01',
+            enddate: '2021-01-01',
+        };
+
+        setExp([firstExp, secondExp]);
+        setEduc([firstEduc, secondEduc]);
+    }
+
+    function reactPrint(){
+        return(
+            <>
+                <ReactToPrint
+                trigger={() => {
+                    return <button>Print</button>;
+                }}
+                >
+
+                </ReactToPrint>
+            </>
+        )
     }
 
     return (
@@ -187,9 +259,21 @@ export default function Container() {
                         saveEduc={saveEduc}
                         deleteEduc={deleteEduc}
                     />
+                    <section>
+                        <button onClick={sampleData}>Sample</button>
+                        <button onClick={resetFields}>Reset</button>
+                        <ReactToPrint
+                            trigger={() => {
+                                return <button>Print</button>;
+                            }}
+                        content={() => componentRef}
+                        documentTitle="Resume"
+                        pageStyle="print"
+                        />
+                    </section>
                 </section>
 
-                <div className='preview'>
+                <div className='preview' ref={(test) => (componentRef = test)}>
                     <Preview
                         firstName={firstName}
                         lastName={lastName}
